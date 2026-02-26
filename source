@@ -1,0 +1,29 @@
+
+Sub Cursor_A1()
+
+' 画面更新をさせない（チカチカするため）
+Application.ScreenUpdating = False
+
+Dim ws As Worksheet
+' 各シートを順番に見ていく
+For Each ws In Worksheets
+' カーソルをA1に移動
+ws.Select
+Range("A1").Select
+' 表示位置を左上端に移動
+ActiveWindow.ScrollColumn = 1
+ActiveWindow.ScrollRow = 1
+' 表示倍率を１００％に戻す
+ActiveWindow.Zoom = 100
+Next ws
+
+' １枚目のシートに移動
+Sheets(1).Select
+'画面更新を再開させておく
+Application.ScreenUpdating = True
+' メッセージを表示
+MsgBox "処理が完了しました"
+
+Workbooks("cursorA1.xlsm").Close
+
+End Sub
